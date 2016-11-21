@@ -1,0 +1,57 @@
+<section ng-if="!id">
+	<h1>
+	   Persone <a class="btn btn-success" href="#/persone/new"><i class="fa fa-file-o"></i> Nuovo</a>
+	</h1>
+	<ul>
+		<li ng-repeat="d in data">
+			<a ng-href="#/persone/{{d._id}}">{{d.cognome|uppercase}} {{d.nome|uppercase}}</a>
+		</li>
+	</ul>
+</section>
+
+<section ng-if="id">
+	<h1>
+	   {{d.cognome|uppercase}} {{d.nome|uppercase}} <span ng-hide="d.cognome">Nuova persona</span>
+	</h1>
+	<form ng-submit="save()" class="well">
+		<p class="form-group">
+			<label>Cognome </label>
+			<input class="form-control" ng-model="d.cognome" autofocus />
+			<label>Nome </label>
+			<input class="form-control" ng-model="d.nome" />
+		</p>
+			<button type="submit" class="btn btn-primary"  data-toggle="tooltip" data-placement="bottom" title="Salva"><i class="fa fa-save"></i> Salva</button>
+			<a accesskey="n" class="btn btn-success" href="#/persone/new"><i class="fa fa-file-o"></i> Nuovo</a>
+			<a accesskey="l" class="btn btn-default" href="#/persone"><i class="fa fa-table"></i> Elenco</a>
+			<a accesskey="x" class="btn btn-danger" ng-click="remove()"><i class="fa fa-trash"></i> Elimina</a>
+	</form>
+	<div class="container" >
+	<div class="row">
+	<div class="col-sm-6">
+	<h3>Email
+	   <span style="zoom:75%" class="pull-right">
+		<button ng-click="createEmail()" class="btn btn-small btn-success"><i class="fa fa-file-o"></i></button>
+		<button ng-click="removeEmail()" class="btn btn-small btn-danger" ><i class="fa fa-trash-o"></i></button>
+	   </span>
+	</h3>
+	
+		<div  id="gridEmails" ui-grid="gridEmailsOptions" class="grd" ui-grid-edit ui-grid-cellNav ui-grid-row-edit ui-grid-selection></div>
+	</div>
+	</div>
+	</div>
+	
+	<div class="container" >
+	<div class="row">
+	<div class="col-sm-6">
+	<h3>Recapiti
+	   <span style="zoom:75%" class="pull-right">
+		<button ng-click="createContact()" class="btn btn-small btn-success"><i class="fa fa-file-o"></i></button>
+		<button ng-click="removeEmail()" class="btn btn-small btn-danger" ><i class="fa fa-trash-o"></i></button>
+	   </span>
+	</h3>	
+	
+		<div id="grids" ui-grid="gridContacts" class="grd" ui-grid-edit ui-grid-cellNav ui-grid-row-edit ui-grid-selection></div>
+	</div>
+	</div>
+	</div>
+</section>
